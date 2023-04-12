@@ -21,7 +21,6 @@ RobotPosePublisher::RobotPosePublisher() : Node("robot_pose_publisher"), m_is_st
     m_timer = this->create_wall_timer(10ms, std::bind(&RobotPosePublisher::fn_timer_callback, this));
 }
 
-
 void RobotPosePublisher::fn_timer_callback(){
   geometry_msgs::msg::TransformStamped transformStamped;
   try{
@@ -51,6 +50,7 @@ void RobotPosePublisher::fn_timer_callback(){
     m_publisher->publish(pose_stamped.pose);
   }
 }
+
 
 int main(int argc, char *argv[]){
 	rclcpp::init(argc, argv);

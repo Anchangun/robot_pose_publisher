@@ -24,5 +24,7 @@ find_package(tf2_ros REQUIRED)
 add_executable(robot_pose_publisher_node src/robot_pose_publisher.cpp)
 ament_target_dependencies(robot_pose_publisher_node geometry_msgs rclcpp tf2_ros)
 
-install(TARGETS robot_pose_publisher_node DESTINATION lib/${PRJOECT_NAME})
+install(TARGETS
+  robot_pose_publisher_node
+  DESTINATION lib/${PROJECT_NAME})
 ament_package()

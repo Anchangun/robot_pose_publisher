@@ -26,7 +26,6 @@ class RobotPosePublisher : public rclcpp::Node{
         std::string m_base_frame;
         std::string m_map_frame;
         const std::string m_tp_robot_pose;
-
         std::shared_ptr<tf2_ros::Buffer> tf_buffer;
         std::shared_ptr<tf2_ros::TransformListener> tf_listener;
         void fn_timer_callback();
