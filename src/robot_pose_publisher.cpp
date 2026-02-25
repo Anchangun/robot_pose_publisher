@@ -1,4 +1,5 @@
 #include "robot_pose_publisher/robot_pose_publisher.hpp"
+#include "df_robot_pose_publisher.hpp"
 
 RobotPosePublisher::RobotPosePublisher() : Node("robot_pose_publisher"), m_is_stamped(false), m_base_frame(F_BASE_LINK), m_map_frame(F_MAP),m_tp_robot_pose(TP_ROBOT_POSE){
     tf_buffer = std::make_shared<tf2_ros::Buffer>(this->get_clock());
@@ -18,16 +19,18 @@ RobotPosePublisher::RobotPosePublisher() : Node("robot_pose_publisher"), m_is_st
     else{
         m_publisher = this->create_publisher<geometry_msgs::msg::Pose>(m_tp_robot_pose, qos_profile);
     }
-    m_timer = this->create_wall_timer(10ms, std::bind(&RobotPosePublisher::fn_timer_callback, this));
+    m_timer = this->create_wall_timer(100ms, std::bind(&RobotPosePublisher::fn_timer_callback, this));
 }
 
 void RobotPosePublisher::fn_timer_callback(){
   geometry_msgs::msg::TransformStamped transformStamped;
-  try{
-    transformStamped = tf_buffer->lookupTransform(m_map_frame, m_base_frame, tf2::TimePointZero);    
-  }
-  catch (tf2::TransformException &ex){
-    RCLCPP_INFO(this->get_logger(),"fn_timer_callback : %s","tf2_transform_exception");
+  try {
+    transformStamped = tf_buffer->lookupTransform(
+        m_map_frame, m_base_frame, tf2::TimePointZero);
+  } catch (const tf2::TransformException &ex) {
+    RCLCPP_WARN(this->get_logger(),
+                "TF lookup failed: %s (target=%s source=%s)",
+                ex.what(), m_map_frame.c_str(), m_base_frame.c_str());
     return;
   }
   geometry_msgs::msg::PoseStamped pose_stamped;
