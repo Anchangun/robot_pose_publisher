@@ -5,7 +5,6 @@ robot_pose_publisher publishes the transform between the /base_link frame and th
 ### 개발환경
 * ![Dev badge](https://img.shields.io/badge/ROS2-Foxy-orange?style=flat&logo=ROS&logoColor=white)  ![Dev badge](https://img.shields.io/badge/ROS2-Jazzy-Gren?style=flat&logo=ROS&logoColor=white)
 * ![Dev_badge](https://img.shields.io/badge/Ubuntu-20.04-brightgreen?style=flat&logo=Ubuntu&logoColor=white)
-* ![Dev_badge](https://img.shields.io/badge/HardWare-MSI.AMD-lightgrey?style=flat&logo=MSI&logoColor=white) ![Dev_badge](https://img.shields.io/badge/HardWare-NUC12-lightgrey?style=flat&logo=INTEL&logoColor=white)
 * ![Dev_badge](https://img.shields.io/badge/Robot-JARA-blue) ![Dev_badge](https://img.shields.io/badge/Robot-Wabot3-blue) 
 * ![Dev_badge](https://img.shields.io/badge/Test-GAZEBO-navy)
 <br/>
